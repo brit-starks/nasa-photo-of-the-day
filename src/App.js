@@ -3,24 +3,24 @@ import axios from 'axios';
 import "./App.css";
 
 function App() {
+  const [nasaData, setNasaData] = useState([]);
+
+  useEffect(() => {
+    axios.get("https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY")
+    .then(res =>
+      console.log(res.data),
+      setNasaData(res.data.date);
+      setNasaData(res.data.explanation)
+    )}, 
+    []);
+
+
   return (
-    
     <div className="App">
-
-    const [nasaData, setNasaData] = useState([]);
-    useEffect(() => {
       
-      axios.get("https://dog.ceo/api/breed/hound/images/random/25")
-      .then(res => {
-        console.log(res)}
-      )}, []);
-
-      <p>
-        {/* Read through the instructions in the README.md file to build your NASA
-        app! Have fun <span role=img>🚀</span>! */}
-      </p>
     </div>
   );
 }
+    
 
 export default App;
