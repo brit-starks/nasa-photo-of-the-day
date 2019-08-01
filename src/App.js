@@ -2,22 +2,38 @@ import React, {useState, useEffect} from "react";
 import axios from 'axios';
 import "./App.css";
 
+import Header from './components/Header';
+import Photo from './components/Photo';
+import Description from "./components/Description";
+
 function App() {
-  const [nasaData, setNasaData] = useState([]);
+  // const [nasaData, setNasaData] = useState([]);
+  const [nasaDate, setNasaDate] = useState();
+  const [nasaImage, setNasaImage] = useState();
+  const [nasaTitle, setNasaTitle] = useState();
 
   useEffect(() => {
     axios.get("https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY")
-    .then(res =>
-      console.log(res.data),
-      setNasaData(res.data.date);
-      setNasaData(res.data.explanation)
+    // axios.get("https://dog.ceo/api/breed/hound/images/random/25")
+    .then(res => {
+      console.log(res)
+      setNasaImage(res.data.url)
+      setNasaDate(res.date)
+      setNasaTitle(res.data.title)}
+    )
+    .catch((error) => {console.error(error)}
     )}, 
     []);
 
 
   return (
+
+    
     <div className="App">
-      
+      <Header />
+      <h2>Photo Of The Day</h2>
+      <Photo img={nasaImage} title={nasaTitle}/>
+      <Description date={nasaDate} />
     </div>
   );
 }
