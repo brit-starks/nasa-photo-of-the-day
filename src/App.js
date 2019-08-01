@@ -33,7 +33,7 @@ function App() {
     
     <div className="App">
       <Header />
-      <h2>Photo Of The Day</h2>
+      <h2 style={{fontSize: '2rem'}} >Photo Of The Day</h2>
       <Photo img={nasaImage} title={nasaTitle} />
       <Description date={nasaDate} info={nasaInfo} />
     </div>
