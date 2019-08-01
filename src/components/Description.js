@@ -3,7 +3,8 @@ import React from 'react';
 const Description = (props) => {
   return(
     <div className="description">
-    <p>Published on {props.date}</p>
+      <h4>Published on {props.date}</h4>
+      <p>{props.info}</p>
     </div>
   )
 }

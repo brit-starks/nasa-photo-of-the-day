@@ -11,6 +11,7 @@ function App() {
   const [nasaDate, setNasaDate] = useState();
   const [nasaImage, setNasaImage] = useState();
   const [nasaTitle, setNasaTitle] = useState();
+  const [nasaInfo, setNasaInfo] = useState();
 
   useEffect(() => {
     axios.get("https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY")
@@ -18,9 +19,10 @@ function App() {
     .then(res => {
       console.log(res)
       setNasaImage(res.data.url)
-      setNasaDate(res.date)
-      setNasaTitle(res.data.title)}
-    )
+      setNasaDate(res.data.date)
+      setNasaTitle(res.data.title)
+      setNasaInfo(res.data.explanation)
+    })
     .catch((error) => {console.error(error)}
     )}, 
     []);
@@ -32,8 +34,8 @@ function App() {
     <div className="App">
       <Header />
       <h2>Photo Of The Day</h2>
-      <Photo img={nasaImage} title={nasaTitle}/>
-      <Description date={nasaDate} />
+      <Photo img={nasaImage} title={nasaTitle} />
+      <Description date={nasaDate} info={nasaInfo} />
     </div>
   );
 }
